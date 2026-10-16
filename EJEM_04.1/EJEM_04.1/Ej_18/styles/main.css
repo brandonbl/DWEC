@@ -1,0 +1,16 @@
+/* Estilos comunes de los ejemplos de la UT_04.2 */
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 24px;
+  line-height: 1.5;
+}
+h1 { font-size: 1.4rem; }
+h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+label, input, button, textarea { font-size: 1rem; }
+button { padding: 6px 14px; margin-right: 6px; cursor: pointer; }
+pre { background: #f3f1ea; padding: 12px; border-radius: 8px; min-height: 1.5em; }
+ul#registro { padding-left: 1.2rem; font-family: ui-monospace, Consolas, monospace; font-size: 0.9rem; }
+
+.tarjeta-producto { max-width: 380px; padding: 8px 20px 12px; background: #fff7ee; border: 2px solid #f2894a; border-radius: 12px; cursor: pointer; }
+.tarjeta-producto h2 { margin: 8px 0; font-size: 1.1rem; }
+.tarjeta-producto a { margin-left: 14px; }

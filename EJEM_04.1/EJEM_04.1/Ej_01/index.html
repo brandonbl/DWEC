@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ej_01 · Controlador de eventos en un atributo HTML</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Script clásico: necesario para que las funciones sean globales (atributos HTML) -->
+  <script src="scripts/main.js"></script>
+</head>
+<body>
+  <h1>Ej_01 · Controlador de eventos en un atributo HTML</h1>
+  <div>
+    <label for="edad">Edad:</label>
+    <!-- onblur="..." es JavaScript dentro del HTML (forma desaconsejada) -->
+    <input id="edad" type="number" value="0" onblur="comprobarEdadNoNegativa()">
+  </div>
+  <div id="salida"></div>
+</body>
+</html>

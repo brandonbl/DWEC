@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ej_02 · Atributo HTML con el evento click</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Script clásico: necesario para que las funciones sean globales (atributos HTML) -->
+  <script src="scripts/main.js"></script>
+</head>
+<body>
+  <h1>Ej_02 · Atributo HTML con el evento click</h1>
+  <div>
+    <label for="edad">Edad:</label>
+    <input id="edad" type="number" value="0">
+    <input type="button" value="Comprobar edad" onclick="comprobarEdadNoNegativa()">
+  </div>
+  <div id="salida"></div>
+</body>
+</html>

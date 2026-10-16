@@ -1,0 +1,18 @@
+/* Estilos comunes de los ejemplos de la UT_04.1 */
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 24px;
+  line-height: 1.5;
+}
+h1 { font-size: 1.4rem; }
+h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+label, input, button { font-size: 1rem; }
+button { padding: 6px 14px; margin-right: 6px; cursor: pointer; }
+#salida { margin-top: 12px; color: #b3261e; font-weight: 600; }
+pre#salida, pre#panel { color: #1b2230; font-weight: 400; background: #f3f1ea; padding: 12px; border-radius: 8px; }
+ul#registro { padding-left: 1.2rem; font-family: ui-monospace, Consolas, monospace; font-size: 0.9rem; }
+
+#zona { width: 420px; height: 120px; display: flex; align-items: center; justify-content: center;
+        background: #e8f0fe; border: 2px solid #2f6fde; border-radius: 8px; user-select: none; }
+.caja { display: inline-block; padding: 24px; margin: 6px; background: #e5f3ea; border: 2px solid #2e7d4f; border-radius: 8px; }
+.hijo { display: inline-block; padding: 14px; background: #fff; border: 2px dashed #2e7d4f; }

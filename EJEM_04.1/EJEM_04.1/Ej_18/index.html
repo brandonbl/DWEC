@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ej_17 · preventDefault() y stopPropagation() juntos</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Módulo ES6: se ejecuta en diferido, con el DOM ya construido -->
+  <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+  <h1>Ej_17 · preventDefault() y stopPropagation() juntos</h1>
+  <p>
+    <label><input type="checkbox" id="cancelar"> Llamar a <code>preventDefault()</code></label><br>
+    <label><input type="checkbox" id="detener"> Llamar a <code>stopPropagation()</code></label>
+  </p>
+  <div id="tarjeta" class="tarjeta-producto">
+    <h2>Camiseta DWEC</h2>
+    <p>
+      <button id="boton-comprar" type="button">Comprar</button>
+      <a id="enlace" href="https://developer.mozilla.org/es/docs/Web/API/Event" target="_blank" rel="noopener">Más información</a>
+    </p>
+  </div>
+  <p><button id="boton-limpiar" type="button">Limpiar</button></p>
+  <ul id="registro"></ul>
+</body>
+</html>

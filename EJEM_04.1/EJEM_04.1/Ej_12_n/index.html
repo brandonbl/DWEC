@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ej_12 · Eventos de ratón</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Módulo ES6: se ejecuta en diferido, con el DOM ya construido -->
+  <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+  <h1>Ej_12 · Eventos de ratón</h1>
+  <h2>Botones, doble clic, menú contextual y rueda</h2>
+  <div id="zona">Interactúa aquí con el ratón</div>
+  <ul id="registro"></ul>
+
+  <h2>mouseenter / mouseleave (no burbujean)</h2>
+  <div id="caja-enter" class="caja">Caja <span class="hijo">hijo</span></div>
+  <p id="cuenta-enter"></p>
+
+  <h2>mouseover / mouseout (sí burbujean)</h2>
+  <div id="caja-over" class="caja">Caja <span class="hijo">hijo</span></div>
+  <p id="cuenta-over"></p>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ej_07 · DOMContentLoaded frente a load</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- Módulo ES6: se ejecuta en diferido, con el DOM ya construido -->
+  <script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+  <h1>Ej_07 · DOMContentLoaded frente a load</h1>
+  <ul id="registro"></ul>
+  <!-- La imagen retrasa el evento load de window, pero no DOMContentLoaded -->
+  <img id="imagen" alt="Imagen de ejemplo" width="400" height="120"
+       src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='120'%3E%3Crect width='400' height='120' fill='%23f2894a'/%3E%3Ctext x='200' y='70' font-size='28' text-anchor='middle' fill='white'%3EImagen%3C/text%3E%3C/svg%3E">
+</body>
+</html>

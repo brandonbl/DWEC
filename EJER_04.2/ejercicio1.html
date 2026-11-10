@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de la compra</title>
+  <style>
+    .activo { outline: 2px solid orange; }
+    li { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <form id="formulario-compra">
+    <input type="text" name="producto" placeholder="Producto" required>
+    <input type="number" name="precio" placeholder="Precio" min="0" step="0.01" required>
+    <input type="number" name="unidades" placeholder="Unidades" min="1" value="1" required>
+    <button type="submit">Añadir</button>
+  </form>
+  <input type="text" id="buscador" placeholder="Buscar producto...">
+  <ul id="lista"></ul>
+  <p id="total"></p>
+  <script>
+
+// Elementos del HTML
+const formulario = document.getElementById("formulario-compra");
+const lista = document.getElementById("lista");
+const buscador = document.getElementById("buscador");
+const total = document.getElementById("total");
+
+// Array de productos
+let productos = [];
+let siguienteId = 1;
+
+// Función para pintar los productos
+const pintar = () => {
+    const texto = buscador.value.toLowerCase();
+
+    const productosFiltrados = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(texto)
+    );
+
+    lista.innerHTML = productosFiltrados.map(producto => `
+        <li>
+            ${producto.nombre} - ${producto.precio} € 
+            x ${producto.unidades}
+
+            <button data-accion="restar" data-id="${producto.id}">-</button>
+            <button data-accion="sumar" data-id="${producto.id}">+</button>
+            <button data-accion="borrar" data-id="${producto.id}">Borrar</button>
+        </li>
+    `).join("");
+
+    // Calcular el total de todos los productos
+    const resultado = productos.reduce((acumulado, producto) => {
+        return acumulado + (producto.precio * producto.unidades);
+    }, 0);
+
+    total.textContent = `Total: ${resultado.toFixed(2)} €`;
+};
+
+// Añadir productos
+formulario.addEventListener("submit", (evento) => {
+    evento.preventDefault();
+
+    const nombre = formulario.elements.producto.value.trim();
+    const precio = formulario.elements.precio.valueAsNumber;
+    const unidades = formulario.elements.unidades.valueAsNumber;
+
+    // Buscar si el producto ya existe
+    const existente = productos.find(producto =>
+        producto.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
+    if (existente) {
+        existente.unidades += unidades;
+    } else {
+        productos.push({
+            id: siguienteId,
+            nombre: nombre,
+            precio: precio,
+            unidades: unidades
+        });
+
+        siguienteId++;
+    }
+
+    formulario.reset();
+    formulario.elements.producto.focus();
+
+    pintar();
+});
+
+// Delegación de eventos
+lista.addEventListener("click", (evento) => {
+    const boton = evento.target.closest("button");
+
+    if (!boton) return;
+
+    const id = Number(boton.dataset.id);
+    const accion = boton.dataset.accion;
+
+    const producto = productos.find(producto => producto.id === id);
+
+    if (!producto) return;
+
+    const acciones = {
+        sumar: () => producto.unidades++,
+
+        restar: () => {
+            if (producto.unidades > 1) {
+                producto.unidades--;
+            }
+        },
+
+        borrar: () => {
+            productos = productos.filter(producto => producto.id !== id);
+        }
+    };
+
+    acciones[accion]();
+
+    pintar();
+});
+
+// Buscador
+buscador.addEventListener("input", () => {
+    pintar();
+});
+
+// Cuando un campo recibe el foco
+formulario.addEventListener("focusin", (evento) => {
+    evento.target.classList.add("activo");
+});
+
+// Cuando un campo pierde el foco
+formulario.addEventListener("focusout", (evento) => {
+    evento.target.classList.remove("activo");
+});
+
+// Pintar lista inicial
+pintar();
+
+  </script>
+</body>
+</html>

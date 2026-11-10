@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ - Preguntas frecuentes</title>
+
+    <style>
+        /* Oculta las respuestas */
+        .oculto {
+            display: none;
+        }
+
+        /* Estilo de las preguntas */
+        h2 {
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Preguntas frecuentes</h1>
+
+    <ul>
+        <li>
+            <h2 onclick="revelarRespuesta(this)">¿Qué es HTML?</h2>
+            <p class="oculto">HTML es un lenguaje que permite crear páginas web.</p>
+        </li>
+
+        <li>
+            <h2 onclick="revelarRespuesta(this)">¿Qué es CSS?</h2>
+            <p class="oculto">CSS sirve para dar estilo a las páginas web.</p>
+        </li>
+
+        <li>
+            <h2 onclick="revelarRespuesta(this)">¿Qué es JavaScript?</h2>
+            <p class="oculto">JavaScript permite añadir interactividad a las páginas web.</p>
+        </li>
+    </ul>
+
+    <script>
+        // Oculta todas las respuestas
+        function ocultarTodasLasRespuestas() {
+
+            // Selecciona todos los párrafos con la clase oculto
+            let respuestas = document.querySelectorAll("li p");
+
+            // Recorre todos los párrafos
+            for (let i = 0; i < respuestas.length; i++) {
+                respuestas[i].classList.add("oculto");
+            }
+        }
+
+        // Muestra la respuesta de la pregunta seleccionada
+        function revelarRespuesta(pregunta) {
+
+            // Primero oculta todas las respuestas
+            ocultarTodasLasRespuestas();
+
+            // Busca el párrafo que está justo después del h2
+            let respuesta = pregunta.nextElementSibling;
+
+            // Muestra la respuesta quitando la clase oculto
+            respuesta.classList.remove("oculto");
+        }
+    </script>
+
+</body>
+</html>

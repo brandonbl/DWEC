@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        /* Tamaño de la imagen principal */
+        #imagen-principal {
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* Tamaño de las miniaturas */
+        .miniatura {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        /* Borde de la miniatura seleccionada */
+        .activa {
+            border: 3px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galería de imágenes</h1>
+
+    <div>
+        <!-- Imagen grande principal -->
+        <img id="imagen-principal"
+             src="IMAGEN-PRINCIPAL.jpg"
+             alt="Imagen principal">
+    </div>
+
+
+    <div>
+        <img class="miniatura"
+             src="miniatura 1.jpg"
+             onclick="cambiarImagenPrincipal(0); resaltarMiniatura(0)"
+             alt="Miniatura 1">
+
+        <img class="miniatura"
+             src="miniatura 2.jpg"
+             onclick="cambiarImagenPrincipal(1); resaltarMiniatura(1)"
+             alt="Miniatura 2">
+
+        <img class="miniatura"
+             src="miniatura 3.jpg"
+             onclick="cambiarImagenPrincipal(2); resaltarMiniatura(2)"
+             alt="Miniatura 3">
+
+        <img class="miniatura"
+             src="miniatura 4.jpg"
+             onclick="cambiarImagenPrincipal(3); resaltarMiniatura(3)"
+             alt="Miniatura 4">
+    </div>
+
+    <script>
+         // Cambia la imagen principal según el índice recibido
+         function cambiarImagenPrincipal(indice){
+             // Selecciona todas las miniaturas
+            let miniaturas = document.querySelectorAll(".miniatura");
+
+            // Selecciona la miniatura correspondiente
+            let miniaturaSeleccionada = miniaturas[indice];
+
+            // Obtiene el src de la miniatura
+            let nuevaImagen = miniaturaSeleccionada.getAttribute("src");
+
+            // Selecciona la imagen principal
+            let imagenPrincipal = document.getElementById("imagen-principal");
+
+            // Cambia el src de la imagen principal
+            imagenPrincipal.setAttribute("src", nuevaImagen);
+
+         }
+
+         function resaltarMiniatura(indice){
+            let miniaturas = document.querySelectorAll(".miniatura")
+
+            for(let i = 0; i < miniaturas.length; i++){
+                miniaturas[i].classList.remove("activa")
+            }
+            miniaturas[indice].classList.add("activa")
+         }
+
+
+
+
+
+    </script>
+</body>
+</html>

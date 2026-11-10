@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Notas de clase</title>
+  <style>
+    th[data-orden] { cursor: pointer; }
+    .suspenso { color: darkred; }
+    .aprobado { color: darkgreen; }
+  </style>
+</head>
+<body>
+  <form id="formulario-notas">
+    <input type="text" name="alumno" placeholder="Alumno" required>
+    <input type="number" name="nota" placeholder="Nota (0-10)" min="0" max="10" step="0.1" required>
+    <span id="vista-previa"></span>
+    <button type="submit">Añadir</button>
+  </form>
+  <table id="tabla">
+    <thead>
+      <tr><th data-orden="alumno">Alumno</th><th data-orden="nota">Nota</th><th></th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <p id="resumen"></p>
+  <script>
+    
+// Elementos del HTML
+const formulario = document.getElementById("formulario-notas");
+const tabla = document.querySelector("#tabla tbody");
+const vistaPrevia = document.getElementById("vista-previa");
+const resumen = document.getElementById("resumen");
+const cabecera = document.querySelector("#tabla thead");
+
+// Array de alumnos
+let alumnos = [];
+let siguienteId = 1;
+
+// Variables para ordenar
+let columnaOrdenada = "";
+let direccion = 1;
+
+// Vista previa de la nota
+formulario.elements.nota.addEventListener("input", () => {
+    const nota = formulario.elements.nota.value;
+
+    if (nota === "") {
+        vistaPrevia.textContent = "";
+    } else if (Number(nota) >= 5) {
+        vistaPrevia.textContent = "Aprobado";
+    } else {
+        vistaPrevia.textContent = "Suspenso";
+    }
+});
+
+// Añadir alumnos
+formulario.addEventListener("submit", (evento) => {
+    evento.preventDefault();
+
+    const nombre = formulario.elements.alumno.value.trim();
+    const nota = formulario.elements.nota.valueAsNumber;
+
+    alumnos.push({
+        id: siguienteId,
+        alumno: nombre,
+        nota: nota
+    });
+
+    siguienteId++;
+
+    formulario.reset();
+    vistaPrevia.textContent = "";
+    formulario.elements.alumno.focus();
+
+    pintar();
+});
+
+// Pintar la tabla
+const pintar = () => {
+
+    tabla.innerHTML = alumnos.map(alumno => `
+        <tr>
+            <td>${alumno.alumno}</td>
+            <td class="${alumno.nota >= 5 ? "aprobado" : "suspenso"}">
+                ${alumno.nota}
+            </td>
+            <td>
+                <button data-id="${alumno.id}">Borrar</button>
+            </td>
+        </tr>
+    `).join("");
+
+    calcularResumen();
+};
+
+// Borrar alumnos con delegación
+tabla.addEventListener("click", (evento) => {
+
+    if (evento.target.tagName === "BUTTON") {
+
+        const id = Number(evento.target.dataset.id);
+
+        alumnos = alumnos.filter(alumno => alumno.id !== id);
+
+        pintar();
+    }
+});
+
+// Calcular resumen
+const calcularResumen = () => {
+
+    if (alumnos.length === 0) {
+        resumen.textContent = "Sin alumnos";
+        return;
+    }
+
+    // Calcular la nota media
+    const media = alumnos.reduce((acumulado, alumno) => {
+        return acumulado + alumno.nota;
+    }, 0) / alumnos.length;
+
+    // Buscar el mejor alumno
+    const mejor = alumnos.reduce((anterior, actual) => {
+        return actual.nota > anterior.nota ? actual : anterior;
+    });
+
+    // Contar aprobados
+    const aprobados = alumnos.filter(alumno => alumno.nota >= 5).length;
+
+    // Comprobar si aprueban todos
+    const todosAprueban = alumnos.every(alumno => alumno.nota >= 5);
+
+    resumen.textContent = `
+        Nota media: ${media.toFixed(2)} |
+        Mejor alumno: ${mejor.alumno} (${mejor.nota}) |
+        Aprobados: ${aprobados} |
+        ¿Aprueban todos?: ${todosAprueban ? "Sí" : "No"}
+    `;
+};
+
+// Ordenar la tabla
+cabecera.addEventListener("click", (evento) => {
+
+    const columna = evento.target.dataset.orden;
+
+    if (!columna) return;
+
+    if (columnaOrdenada === columna) {
+        direccion = direccion * -1;
+    } else {
+        columnaOrdenada = columna;
+        direccion = 1;
+    }
+
+    alumnos.sort((a, b) => {
+
+        if (columna === "alumno") {
+            return a.alumno.localeCompare(b.alumno) * direccion;
+        }
+
+        return (a.nota - b.nota) * direccion;
+    });
+
+    pintar();
+});
+
+// Pintar inicialmente
+pintar();
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de pestañas</title>
+
+  <style>
+    .oculto {
+      display: none;
+    }
+
+    .pestana {
+      padding: 10px 15px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background-color: #eee;
+    }
+
+    .pestana:hover {
+      background-color: #ddd;
+    }
+
+    .contenido {
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sistema de pestañas</h1>
+
+  <div id="botonesPestanas">
+    <button class="pestana" data-id="inicio">Inicio</button>
+    <button class="pestana" data-id="servicios">Servicios</button>
+    <button class="pestana" data-id="contacto">Contacto</button>
+  </div>
+
+  <div id="contenidos">
+    <div id="inicio" class="contenido">
+      <h2>Inicio</h2>
+      <p>Bienvenido a la página principal.</p>
+    </div>
+
+    <div id="servicios" class="contenido oculto">
+      <h2>Servicios</h2>
+      <p>Aquí puedes consultar nuestros servicios.</p>
+    </div>
+
+    <div id="contacto" class="contenido oculto">
+      <h2>Contacto</h2>
+      <p>Puedes contactar con nosotros aquí.</p>
+    </div>
+  </div>
+
+  <script src="./pestaña.js"></script>
+
+</body>
+</html>

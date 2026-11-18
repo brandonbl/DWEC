@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generador Lorem Ipsum</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+    }
+
+    #resultado p {
+      line-height: 1.6;
+      padding: 10px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Generador de Lorem Ipsum</h1>
+
+  <label for="cantidad">Número de párrafos:</label>
+  <input type="number" id="cantidad" min="1" max="100" value="3">
+
+  <button id="generarBtn">Generar</button>
+
+  <div id="resultado"></div>
+
+  <script src="./generador.js"></script>
+
+</body>
+</html>

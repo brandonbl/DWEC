@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de la compra</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    button {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #total {
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Productos disponibles</h1>
+
+  <ul id="productos">
+    <li data-price="12.50">
+      Camiseta - 12,50 €
+      <button class="anadir">Añadir al carrito</button>
+    </li>
+
+    <li data-price="25.00">
+      Pantalón - 25,00 €
+      <button class="anadir">Añadir al carrito</button>
+    </li>
+
+    <li data-price="8.99">
+      Gorra - 8,99 €
+      <button class="anadir">Añadir al carrito</button>
+    </li>
+  </ul>
+
+  <h2>Mi carrito</h2>
+
+  <ul id="carrito"></ul>
+
+  <p>Total: <span id="total">0.00</span> €</p>
+
+  <script src="./carrito.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de imágenes</title>
+</head>
+
+<body>
+
+    <div id="galeria">
+        <img id="imagen-principal" src="../img/hacer1.jpg" alt="Imagen principal">
+
+        <div id="miniaturas">
+            <img class="miniatura" src="../img/hacer1.jpg" alt="DJ" onclick="cambiarImagenPrincipal(0)">
+
+            <img class="miniatura" src="../img/hacer2.jpg" alt="Fiesta" onclick="cambiarImagenPrincipal(1)">
+
+            <img class="miniatura" src="../img/hacer3.jpg" alt="Pasta" onclick="cambiarImagenPrincipal(2)">
+
+            <img class="miniatura" src="../img/hacer4.jpg" alt="Bicicleta" onclick="cambiarImagenPrincipal(3)">
+        </div>
+    </div>
+
+    <script src="imagenes.js"></script>
+
+</body>
+
+</html>
